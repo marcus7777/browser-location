@@ -6,9 +6,7 @@
 -->
 <dom-module id="browser-location">
   <template>
-    
-    <paper-button on-tap="getLocation">Add my location</paper-button>
-     [[longitude]]  [[latitude]]
+    <paper-button on-tap="getLocation">[[text]]</paper-button>
   </template>
 </dom-module>
 <script>
@@ -21,18 +19,22 @@
       longitude:{
         notify:true,
       },
+      text:{
+        value: "Add my location"
+      }
     },
-    getLocation: function(undefined){
-        var that = this
-        function showPosition(position) { 
-          that.latitude = position.coords.latitude
-          that.longitude = position.coords.longitude
-        }
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-          alert("Geolocation is not supported by this browser.")
-        }
+    getLocation: function(){
+      var that = this
+      function showPosition(position) { 
+        that.latitude = position.coords.latitude
+        that.longitude = position.coords.longitude
+        that.text = position.coords.latitude + "," + position.coords.longitude
+      }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        alert("Geolocation is not supported by this browser.")
+      }
     },
   })
 </script>
