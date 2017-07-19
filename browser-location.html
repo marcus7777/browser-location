@@ -1,0 +1,43 @@
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../polymer/polymer.html">
+<!--
+  `<browser-location></browser-location>` Asks the browser of your current location
+  @demo demo.html
+-->
+<dom-module id="browser-location">
+  <template>
+    <paper-button on-tap="getLocation">Add my location</paper-button>
+     [[longitude]]  [[latitude]]
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "browser-location",
+    properties:{
+      latitude:{
+        notify:true,
+      },
+      longitude:{
+        notify:true,
+      },
+      longitudeRef:{
+        notify:true,
+      },
+      latitudeRef:{
+      },
+    },
+    getLocation: function(undefined){
+        var that = this
+        function showPosition(position) { 
+          debugger
+          that.latitude = position.coords.latitude;
+          that.longitude = position.coords.longitude;
+        }
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          alert("Geolocation is not supported by this browser.")
+        }
+    },
+  })
+</script>
