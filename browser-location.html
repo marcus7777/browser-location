@@ -6,6 +6,7 @@
 -->
 <dom-module id="browser-location">
   <template>
+    
     <paper-button on-tap="getLocation">Add my location</paper-button>
      [[longitude]]  [[latitude]]
   </template>
@@ -20,18 +21,12 @@
       longitude:{
         notify:true,
       },
-      longitudeRef:{
-        notify:true,
-      },
-      latitudeRef:{
-      },
     },
     getLocation: function(undefined){
         var that = this
         function showPosition(position) { 
-          debugger
-          that.latitude = position.coords.latitude;
-          that.longitude = position.coords.longitude;
+          that.latitude = position.coords.latitude
+          that.longitude = position.coords.longitude
         }
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(showPosition);
