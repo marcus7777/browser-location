@@ -36,10 +36,10 @@
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
       } else {
-        alert("Geolocation is not supported by this browser.")
+        that.text = "Geolocation is not supported by this browser."
       }
     },
-    ready: {
+    ready: function(){
       var that = this
       if (navigator.permissions) {
         navigator.permissions.query({name:'geolocation'}).then(function(permission){
