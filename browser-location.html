@@ -44,9 +44,7 @@
         navigator.permissions.query({name:'geolocation'}).then(function(permission){
           // is geolocation granted?
           if (permission.state === "granted") {
-            if (!that.latitude) {
-              that.getLocation()
-            }
+            that.getLocation()
           }
         })
       }
