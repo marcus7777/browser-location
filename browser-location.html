@@ -20,15 +20,18 @@
         notify:true,
       },
       text:{
-        value: "Add my location"
-      }
+        value: "Share my location"
+      },
+      onceApproved:{
+        value: "⊕"
+      },
     },
     getLocation: function(){
       var that = this
       function showPosition(position) { 
         that.latitude = position.coords.latitude
         that.longitude = position.coords.longitude
-        that.text = position.coords.latitude + "," + position.coords.longitude
+        that.text = that.onceApproved
       }
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -36,5 +39,6 @@
         alert("Geolocation is not supported by this browser.")
       }
     },
+    // TODO https://stackoverflow.com/questions/10077606/check-if-geolocation-was-allowed-and-get-lat-lon
   })
 </script>
