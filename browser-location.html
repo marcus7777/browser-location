@@ -26,14 +26,16 @@
         value: "⊕"
       },
     },
-    setLatLong: function(position){
-      this.latitude = position.coords.latitude
-      this.longitude = position.coords.longitude
-      this.text = this.onceApproved
-    },
-    getLocation: function(){
+    getLocation: function(e){
+      var that = this
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(this.setLatLong);
+        navigator.geolocation.getCurrentPosition(function(position){
+          if (!that.longitude || e !== 0) {
+            that.latitude = position.coords.latitude
+            that.longitude = position.coords.longitude
+          }
+          that.text = that.onceApproved
+        })
       } else {
         that.text = "Geolocation is not supported by this browser."
       }
@@ -44,7 +46,7 @@
         navigator.permissions.query({name:'geolocation'}).then(function(permission){
           // is geolocation granted?
           if (permission.state === "granted") {
-            that.getLocation()
+            that.getLocation(0)
           }
         })
       }
