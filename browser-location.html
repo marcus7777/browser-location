@@ -25,6 +25,10 @@
       onceApproved:{
         value: "⊕"
       },
+      autoSet: {
+        type:Boolean,
+        value:false,
+      },
     },
     getLocation: function(e){
       var that = this
@@ -46,7 +50,11 @@
         navigator.permissions.query({name:'geolocation'}).then(function(permission){
           // is geolocation granted?
           if (permission.state === "granted") {
-            that.getLocation(0)
+            if (that.autoSet) {
+              that.getLocation(0)
+            } else {
+              that.text = that.onceApproved
+            }
           }
         })
       }
