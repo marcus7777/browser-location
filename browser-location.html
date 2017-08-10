@@ -34,6 +34,10 @@
       var that = this
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
+          
+          that.latitude = 0
+          that.longitude = 0
+          
           that.latitude = position.coords.latitude
           that.longitude = position.coords.longitude
           that.text = that.onceApproved
