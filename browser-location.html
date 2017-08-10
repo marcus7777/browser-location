@@ -34,10 +34,8 @@
       var that = this
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
-          if (!that.longitude || e !== 0) {
-            that.latitude = position.coords.latitude
-            that.longitude = position.coords.longitude
-          }
+          that.latitude = position.coords.latitude
+          that.longitude = position.coords.longitude
           that.text = that.onceApproved
         })
       } else {
